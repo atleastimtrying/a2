@@ -1,7 +1,142 @@
+*{
+  margin:0;
+  padding:0;
+  font-size:24px;
+  font-family:sans-serif;
+  color:#666;
+}
+
 body {
   background-color: #fff;
-  text-align: center;
   font-family:sans-serif;
+  width:774px;
+  margin:0 auto;
+}
+
+header{
+  padding:23px;
+  border: 1px solid #ccc;
+  background:#eee;
+  border-radius:4px;
+  box-shadow:0 4px 16px #ccc;
+  text-shadow:0 1px 1px white;
+  margin:8px;
+}
+
+header h1{
+  font-size:40px;
+  margin-bottom:8px;
+  font-weight:normal;
+}
+
+header h2{
+  font-size:32px;
+  margin-bottom:8px;
+  font-weight:normal;
+}
+
+header p{
+  font-style:italic;
+  font-size:16px;
+  margin-bottom:8px;
+}
+
+header select{
+  display:inline-block;
+  text-align:center;
+  margin-right:6px;
+  background-color:white;
+  border: 1px solid #ccc;
+  box-shadow:inset 4px #ccc;
+  padding:8px;
+  border-radius:4px;
+  width:195px;
+  text-align:center;
+  outline-color:orange;
+  -webkit-appearance: none;
+}
+
+header #make{
+  display:inline-block;
+  background-color:#dedede;
+  border: 1px solid #ccc;
+  box-shadow:inset 4px #ccc;
+  border-radius:4px;
+  padding:7px;
+  color:#666;
+  text-shadow:0 1px 1px white;
+  text-decoration:none;
+}
+
+.downloadable{
+  position:relative;
+  display:inline-block;
+  margin: 8px;
+  z-index:0;
+  -webkit-transition:all 0.5s ease-out;
+}
+
+.download{
+  display:inline-block;
+  text-align:center;
+  background-color:#dedede;
+  border: 1px solid #ccc;
+  box-shadow:inset 4px #ccc;
+  padding:7px;
+  border-radius:4px;
+  text-decoration:none;
+  color:#666;
+  text-shadow:0 1px 1px white;
+  box-shadow:0 4px 16px #ccc;
+  -webkit-transition:all 0.5s ease-out;
+}
+
+.download:hover{
+  box-shadow:0 2px 8px #999;
+}
+
+.download img{
+  display:block;
+  background:white;
+  border-radius:2px;
+  margin-bottom:8px;
+  box-shadow:inset 8px #ccc;
+}
+
+.download img.portrait{
+  width:160px;
+  padding: 0 33px 0px 33px;
+}
+
+.download img.landscape{
+  height:160px;
+  padding: 33px 0 33px 0;
+}
+
+.downloadable .close{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 12px;
+  line-height: 12px;
+  background-color: #ddd;
+  color: #999;
+  text-decoration: none;
+  padding: 0 0 4px 5px;
+  border-bottom-left-radius: 3px;
+  text-transform: uppercase;
+  -webkit-transition:color 0.5s ease-out;
+}
+
+.downloadable .close:hover{
+  color:#333;
+}
+
+.blurred{
+  opacity:0.4; 
+}
+#print{
+  display:none;
 }
 canvas{
 	display:none;
