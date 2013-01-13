@@ -8,6 +8,8 @@
     function App() {
       this.calculateDimensions = __bind(this.calculateDimensions, this);
 
+      this.download = __bind(this.download, this);
+
       this.make = __bind(this.make, this);
 
       this.setType = __bind(this.setType, this);
@@ -36,7 +38,15 @@
     App.prototype.make = function() {
       this.calculateDimensions();
       this.display.draw();
-      $("article").append("<div class='downloadable'><a href='#' class='close'>x</a><a href='" + (this.display.print()) + "' target='_blank' class='download'><span><img src='" + (this.display.print()) + "' class='" + this.orientation + "'></span>Download</a><div>");
+      $("article").append("      <div class='downloadable'>      <a href='#' class='close'>x</a>      <a href='" + (this.display.print()) + "' target='_blank' class='download' download='generated-art'>      <span><img src='" + (this.display.print()) + "' class='" + this.orientation + "'></span>Download      </a>      <div>");
+      return false;
+    };
+
+    App.prototype.download = function(event) {
+      var object, strData;
+      object = $(event.currentTarget);
+      strData = object.find('img').attr('src');
+      document.location.href = strData.replace("image/png", "image/octet-stream");
       return false;
     };
 

@@ -12,6 +12,12 @@
 
       this.clear = __bind(this.clear, this);
 
+      this.randomCircles = __bind(this.randomCircles, this);
+
+      this.randomCurves = __bind(this.randomCurves, this);
+
+      this.wanderingCurve = __bind(this.wanderingCurve, this);
+
       this.draw = __bind(this.draw, this);
 
       this.setDimensions = __bind(this.setDimensions, this);
@@ -24,6 +30,11 @@
         this.closePath();
         return this.fill();
       };
+      this.ctx.strokeCircle = function(x, y, r) {
+        this.beginPath();
+        this.arc(x, y, r, 0, 2 * Math.PI, false);
+        return this.stroke();
+      };
     }
 
     Display.prototype.setDimensions = function(width, height) {
@@ -34,18 +45,56 @@
     };
 
     Display.prototype.draw = function() {
-      var num, _i, _ref, _results;
       this.clear();
+      this.randomCircles();
+      return this.randomCurves();
+    };
+
+    Display.prototype.wanderingCurve = function() {
+      var diffX, diffY, endX, endY, startX, startY;
+      startX = this.roundom(this.width);
+      startY = this.roundom(this.height);
+      endX = this.roundom(this.width);
+      endY = this.roundom(this.height);
+      diffX = endX - startX;
+      diffY = endY - startY;
+      this.ctx.lineWidth = 1;
+      this.ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+      this.ctx.beginPath();
+      this.ctx.moveTo(startX, startY);
+      this.ctx.bezierCurveTo(this.randwith(diffX, startX), this.randwith(diffY, startY), this.randwith(diffY, endY * 0.7), this.randwith(diffY, endY * 0.7), endX, endY);
+      this.ctx.stroke();
+      return this.ctx.strokeCircle(endX, endY, 10);
+    };
+
+    Display.prototype.randomCurves = function() {
+      var num, _i, _ref, _results;
+      _results = [];
+      for (num = _i = 1, _ref = this.roundom(10); 1 <= _ref ? _i <= _ref : _i >= _ref; num = 1 <= _ref ? ++_i : --_i) {
+        _results.push(this.wanderingCurve());
+      }
+      return _results;
+    };
+
+    Display.prototype.randomCircles = function() {
+      var num, r, rgb, x, y, _i, _ref, _results;
       _results = [];
       for (num = _i = 1, _ref = this.roundom(100); 1 <= _ref ? _i <= _ref : _i >= _ref; num = 1 <= _ref ? ++_i : --_i) {
-        this.ctx.fillStyle = "rgba(255,235,215," + (Math.random()) + ")";
-        _results.push(this.ctx.fillCircle(this.roundom(this.width), this.roundom(this.height), this.roundom(this.width / 8)));
+        rgb = "" + (this.randwith(50, 205)) + "," + (this.randwith(50, 205)) + "," + (this.randwith(50, 205));
+        x = this.roundom(this.width);
+        y = this.roundom(this.height);
+        r = this.roundom(this.width / 16);
+        this.ctx.lineWidth = this.roundom(3);
+        this.ctx.fillStyle = "rgba(" + rgb + "," + (Math.random()) + ")";
+        this.ctx.fillCircle(x, y, r);
+        this.ctx.strokeStyle = "rgb(" + rgb + ")";
+        _results.push(this.ctx.strokeCircle(x, y, this.roundom(r)));
       }
       return _results;
     };
 
     Display.prototype.clear = function() {
-      this.ctx.fillStyle = "rgb(" + (this.randwith(100, 155)) + "," + (this.randwith(100, 155)) + "," + (this.randwith(100, 155)) + ")";
+      this.ctx.fillStyle = "rgb(" + (this.randwith(100, 105)) + "," + (this.randwith(100, 105)) + "," + (this.randwith(100, 105)) + ")";
       return this.ctx.fillRect(0, 0, this.width, this.height);
     };
 
